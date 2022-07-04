@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <title>Rock Paper Scissor Game</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row text-center">
+        <h1 class="display-4">Rock Paper Scissors Game</h1>
+      </div>
+      <!-- row of Main game here -->
+      <div class="row">
+        <!-- Player Score here -->
+        <div class="col-lg-4 text-center">
+          <div class="row">
+            <div class="display-5">Player Score</div>
+          </div>
+          <div class="row mx-auto display-1 results">
+            <span id="result-score-player">0</span>
+          </div>
+        </div>
+        <!-- vs here -->
+        <div class="col-lg-4 align-self-center">
+          <div class="selections text-center">
+            <form action="#">
+              <button class="selection" onclick="rockFunction()">✊</button>
+              <button class="selection" onclick="paperFunction()">🖐️</button>
+              <button class="selection" onclick="scissorsFunction()">✌️</button>
+            </form>
+          </div>
+        </div>
+        <!-- Bot Score here -->
+        <div class="col-lg-4 text-center">
+          <div class="row">
+            <div class="display-5">Bot Score</div>
+          </div>
+          <div class="row mx-auto display-1 results">
+            <span id="result-score-bot">0</span>
+          </div>
+        </div>
+      </div>
+      <!-- row of Match History -->
+      <div class="row">
+        <div class="text-center display-5" id="display-winner">&nbsp;</div>
+        <div class="text-center display-4">Match History</div>
+        <div class="text-center display-6">
+          <ul id="matchHistory" class="list-group"></ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      let botPick = ["Rock", "Paper", "Scissors"];
+      let player = document.getElementById("result-score-player");
+      let bot = document.getElementById("result-score-bot");
+      let newPlayerScore = 0;
+      let newBotScore = 0;
+
+      function rockFunction() {
+        let i = Math.floor(Math.random() * 3);
+        let list = document.getElementById("matchHistory");
+        let li = document.createElement("li");
+        let result = document.getElementById("display-winner");
+
+        if (i == 0) {
+          result.innerHTML = "Bot picked " + botPick[i] + ". It's a Tie";
+          result.style.color = "black";
+          li.textContent = "✊ VS ✊";
+          li.style.textDecoration = "line-through";
+          li.classList.add("result-selection");
+          list.insertBefore(li, list.firstChild);
+        } else if (i == 1) {
+          result.innerHTML = "Bot picked " + botPick[i] + ". You Lose!";
+          result.style.color = "red";
+          li.textContent = "✊ VS 🖐️";
+          li.classList.add("result-selection");
+          li.style.color = "red";
+          list.insertBefore(li, list.firstChild);
+          newBotScore++;
+          document.getElementById("result-score-bot").innerHTML = newBotScore;
+        } else {
+          result.innerHTML = "Bot picked " + botPick[i] + ". You Win!";
+          result.style.color = "green";
+          li.textContent = "✊ VS ✌️";
+          li.classList.add("winner");
+          li.style.color = "green";
+          list.insertBefore(li, list.firstChild);
+          newPlayerScore++;
+          document.getElementById("result-score-player").innerHTML =
+            newPlayerScore;
+        }
+      }
+      function paperFunction() {
+        let i = Math.floor(Math.random() * 3);
+        let list = document.getElementById("matchHistory");
+        let li = document.createElement("li");
+        let result = document.getElementById("display-winner");
+
+        if (i == 0) {
+          result.innerHTML = "Bot picked " + botPick[i] + ". You Win!";
+          result.style.color = "green";
+          li.textContent = "🖐️ VS ✊";
+          li.classList.add("winner");
+          li.style.color = "green";
+          list.insertBefore(li, list.firstChild);
+          newPlayerScore++;
+          document.getElementById("result-score-player").innerHTML =
+            newPlayerScore;
+        } else if (i == 1) {
+          result.innerHTML = "Bot picked " + botPick[i] + ". It's a Tie";
+          result.style.color = "black";
+          li.textContent = "🖐️ VS 🖐️";
+          li.style.textDecoration = "line-through";
+          li.classList.add("result-selection");
+          list.insertBefore(li, list.firstChild);
+        } else {
+          result.innerHTML = "Bot picked " + botPick[i] + ". You Lose!";
+          result.style.color = "red";
+          li.textContent = "🖐️ VS ✌️";
+          li.classList.add("result-selection");
+          li.style.color = "red";
+          list.insertBefore(li, list.firstChild);
+          newBotScore++;
+          document.getElementById("result-score-bot").innerHTML = newBotScore;
+        }
+      }
+      function scissorsFunction() {
+        let i = Math.floor(Math.random() * 3);
+        let list = document.getElementById("matchHistory");
+        let li = document.createElement("li");
+        let result = document.getElementById("display-winner");
+
+        if (i == 0) {
+          result.innerHTML = "Bot picked " + botPick[i] + ". You Lose!";
+          result.style.color = "red";
+          li.textContent = "✌️ VS ✊";
+          li.classList.add("result-selection");
+          li.style.color = "red";
+          list.insertBefore(li, list.firstChild);
+          newBotScore++;
+          document.getElementById("result-score-bot").innerHTML = newBotScore;
+        } else if (i == 1) {
+          result.innerHTML = "Bot picked " + botPick[i] + ". You Win!";
+          result.style.color = "green";
+          li.textContent = "✌️ VS 🖐️";
+          li.classList.add("winner");
+          li.style.color = "green";
+          list.insertBefore(li, list.firstChild);
+          newPlayerScore++;
+          document.getElementById("result-score-player").innerHTML =
+            newPlayerScore;
+        } else {
+          result.innerHTML = "Bot picked " + botPick[i] + ". It's a Tie";
+          result.style.color = "black";
+          li.textContent = "✌️ VS ✌️";
+          li.style.textDecoration = "line-through";
+          li.classList.add("result-selection");
+          list.insertBefore(li, list.firstChild);
+        }
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
